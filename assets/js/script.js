@@ -21,10 +21,12 @@ document.querySelector(".game-area").style.display = "none";
 document.querySelector(".end-game-screen").style.display = "none";
 document.querySelector(".betting-options").style.display = "none";
 
+// Initialize player's chip count
+let playerChips = 3000;
+
 // On document load
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize player's chip count
-    let playerChips = 3000;
+    
 
     const startButton =  document.querySelector(".play-button");
     // Event listener for the "Let's Play" button
@@ -38,33 +40,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Functions
 
-function startGame() {
+function startGame(event) {
+    event.preventDefault();
     // Hide the game rules
     document.querySelector(".game-rules").style.display = "none";
     // Show the betting options
     const bettingOptions = document.querySelector(".betting-options");
     bettingOptions.style.display = "block";
-    // Add event listener to betting chip buttons
-    const chipButtons = document.querySelectorAll(".chip");
-    chipButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            // Get the value of the chip/button clicked
-            const betAmount = parseInt(this.value);
-            // Call a function to handle the betting logic (e.g., update pot, subtract chips from player's chips, etc.)
-            handleBet(betAmount);
-            // Hide the betting options after the bet is placed
-            bettingOptions.style.display = "none";
-            // Proceed to deal the cards
-            dealCards();
-        });
-    });
 }
 
 function handleBet(amount) {
     // Subtract the bet amount from player's chip count
     playerChips -= amount;
     updateChipCount(playerChips);
-    
+
     const betAmountElement = document.querySelector(".your-bet");
     betAmountElement.textContent = `Your bet: ${amount}`;
 
@@ -72,7 +61,7 @@ function handleBet(amount) {
 }
 
 function updateChipCount(chips) {
-    const chipCountElement = document.querySelector(".betting-options p");
+    const chipCountElement = document.querySelector(".your-chips");
     chipCountElement.textContent = `Your chips: ${chips}`;
 }
 
