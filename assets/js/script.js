@@ -15,3 +15,52 @@ for (const suit of suits) {
         deck.push(card);
     }
 }
+
+// the game area and end game screen is hidden initially
+document.querySelector(".game-area").style.display = "none";
+document.querySelector(".end-game-screen").style.display = "none";
+
+// On document load
+document.addEventListener("DOMContentLoaded", function() {
+    const startButton =  document.querySelector(".play-button");
+    // Event listener for the "Let's Play" button
+    if(startButton) {
+        startButton.addEventListener("click", startGame);
+    } else {
+        console.error('Start button not found');
+    }
+
+});
+
+// Functions
+
+function startGame() {
+    // Hide the game rules
+    document.querySelector(".game-rules").style.display = "none";
+    // Show the game area
+    document.querySelector(".game-area").style.display = "block";
+}
+
+function dealCard() {
+
+}
+
+function hit() {
+
+}
+
+function stand() {
+
+}
+
+function determineWinner() {
+
+}
+
+function getHandValue() {
+
+}
+
+function endGame() {
+
+}
