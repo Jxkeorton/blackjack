@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: white;
 }
 
 /* Generic styles */
@@ -15,22 +16,36 @@ body {
     font-family: 'roboto', sans-serif;
 }
 
+/* Header Styles */
+
 header {
     background-color: black;
-    padding: 0 1rem;
+    padding: .5rem 1rem;
     position: fixed;
     z-index: 99;
-    height: 50px;
+    height: auto;
     width: 100%;
     text-align: center;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
+header ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    margin-top: 15px;
+}
+
+/* Main Content */
+
 main {
-    margin-top: 50px;
+    padding-top: 100px;
     height: 100vh;
     background: url("../images/felt.webp") no-repeat center / cover;
 }
