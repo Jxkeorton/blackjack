@@ -54,7 +54,8 @@ header > ul {
 
 main {
     padding-top: 100px;
-    height: 100vh;
+    padding-bottom: 70px;
+    height: 100%;
     background: url("../images/felt.webp") no-repeat center / cover;
 }
 
@@ -64,6 +65,23 @@ section {
     text-align: center;
     /* temporary border */
     border: solid 1px black;
+}
+
+.play-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
+    background-color: #c6896a;
+}
+
+.play-button:hover {
+    opacity: 0.8;
 }
 
 /* Game Area */
@@ -160,6 +178,10 @@ section {
 /* Footer */
 
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
