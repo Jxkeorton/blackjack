@@ -71,8 +71,12 @@ section {
     margin-top: 20px;
 }
 
+.pot {
+    margin-top: 40px;
+}
+
 .players-hand {
-    margin-top: 100px;
+    margin-top: 10px;
 }
 
 .card {
@@ -85,6 +89,72 @@ section {
     top: 30px;
 }
 
+.players-chips {
+    margin-top: 20px;
+}
+
+/* Game Area Buttons */
+.game-control, .chip {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.hit {
+    background-color: #4CAF50; /* Green */
+}
+
+.stand {
+    background-color: #f44336; /* Red */
+}
+
+.chip {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/* Chip Colors */
+.gold {
+    background-color: #FFD700; /* Gold */
+}
+
+.bronze {
+    background-color: #CD7F32; /* Bronze */
+}
+
+.light-grey {
+    background-color: #D3D3D3; /* Light Grey */
+}
+
+.dark-grey {
+    background-color: #808080; /* Dark Grey */
+}
+
+/* Hover Effect for Buttons and Chips */
+.game-control:hover, .chip:hover {
+    opacity: 0.8;
+}
+
+/* Hover Effect for Hit and Stand Buttons */
+.hit:hover {
+    background-color: #45a049; /* Darker Green */
+}
+
+.stand:hover {
+    background-color: #e53935; /* Darker Red */
+}
 
 
 /* Footer */
