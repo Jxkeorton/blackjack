@@ -53,6 +53,9 @@ header > ul {
 /* Main Content */
 
 main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 100px;
     padding-bottom: 70px;
     height: 100vh;
