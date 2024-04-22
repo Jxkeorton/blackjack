@@ -7,23 +7,37 @@
     <link rel="stylesheet" href="./assets/css/style.css" >
 </head>
 <body>
+    <!-- Header: Includes the main title and nav links -->
     <header>
         <h1>Blackjack Royale</h1>
         <ul>
-            <li><a>Home</a></li>
-            <li><a>Play Game</a></li>
+            <li class="nav-links"><a>Home</a></li>
+            <li class="nav-links"><a>Play Game</a></li>
         </ul>
     </header>
+
+    <!-- Main: Contains the content sections of the game -->
     <main>
-        <div class="game-rules">
-            Game rules
-        </div>
-        <div class="game-area">
-            Game area
-        </div>
-        <div class="end-game-screen">
-            End game screen
-        </div>
+        <!-- Start Area: Displays the rules and start button -->
+        <section class="game-rules">
+            <h2>Welcome to Blackjack Royale</h2>
+        </section>
+
+        <!-- Game Area: Hidden by default; shows gmae controls and both dealer/player hands -->
+        <section class="game-area">
+            <h2>Blackjack Royale</h2>
+        </section>
+
+        <!-- End Game Area: Hidden by default; Displays the result of the game and a play again button -->
+        <section class="end-game-screen">
+            <h2>Win/lose</h2>
+        </section>
     </main>
+
+    <!-- Footer: Contains github link -->
+    <footer>
+        <a href="https://github.com/Jxkeorton/blackjack" target="_blank" rel="noopener" aria-label="Visit the github page for this project, opens in a new tab" >Github icon</a>
+    </footer>
+
 </body>
 </html>

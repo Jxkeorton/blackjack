@@ -32,7 +32,7 @@ header {
     flex-direction: column;
 }
 
-header ul {
+header > ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,6 +40,14 @@ header ul {
     list-style: none;
     gap: 50px;
     margin-top: 15px;
+}
+
+.nav-links {
+    cursor: pointer;
+}
+
+.nav-links > a:hover {
+    color: red;
 }
 
 /* Main Content */
