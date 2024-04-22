@@ -58,6 +58,35 @@ main {
     background: url("../images/felt.webp") no-repeat center / cover;
 }
 
+section {
+    padding: 10px;
+    margin: 15px;
+    text-align: center;
+    /* temporary border */
+    border: solid 1px black;
+}
+
+/* Game Area */
+.dealers-hand{
+    margin-top: 20px;
+}
+
+.players-hand {
+    margin-top: 100px;
+}
+
+.card {
+    width: 100px; 
+    position: relative;
+}
+
+.right {
+    right: 50px;
+    top: 30px;
+}
+
+
+
 /* Footer */
 
 footer {
