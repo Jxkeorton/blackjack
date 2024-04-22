@@ -12,6 +12,26 @@ body {
     display: flex;
     flex-direction: column;
     /* Generic project styles */
-    color: #fafafa;
     font-family: 'roboto', sans-serif;
 }
+
+header {
+    background-color: black;
+    padding: 0 1rem;
+    position: fixed;
+    z-index: 99;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    margin-top: 50px;
+    height: 100vh;
+    background: url("../images/felt.webp") no-repeat center / cover;
+}
+
