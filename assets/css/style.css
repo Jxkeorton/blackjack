@@ -87,6 +87,29 @@ section {
     opacity: 0.8;
 }
 
+/* Betting options */
+.betting-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.place-bet-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
+    background-color: #c6896a;
+}
+
 /* Game Area */
 .dealers-hand{
     margin-top: 20px;
