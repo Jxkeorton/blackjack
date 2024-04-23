@@ -89,10 +89,29 @@ function betPlaced() {
     const playerChipCount = document.querySelector(".player-chips");
     playerChipCount.textContent = `Your chips: ${playerChips}`;
 
+    dealCards()
+
 }
 
 function dealCards() {
+    console.log(deck)
 
+    shuffleCards()
+    const card1 = document.querySelector(".card1")
+    const card3 = document.querySelector(".card3")
+    const card4 = document.querySelector(".card4")
+
+    card1.src = deck[0].imageUrl;
+    card3.src = deck[1].imageUrl;
+    card4.src = deck[2].imageUrl;
+
+}
+
+function shuffleCards() {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
 }
 
 function hit() {
