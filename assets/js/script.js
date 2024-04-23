@@ -90,7 +90,7 @@ function betPlaced() {
     playerChipCount.textContent = `Your chips: ${playerChips}`;
 
     dealCards()
-
+    
 }
 
 function dealCards() {
