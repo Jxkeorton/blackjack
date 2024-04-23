@@ -69,11 +69,26 @@ function handleBet(amount) {
     betAmountElement.textContent = `Your bet: ${currentBet}`;
 
     console.log("Player bets:", currentBet);
+
+    const placeBetButton = document.querySelector(".place-bet-button")
+    placeBetButton.addEventListener("click", betPlaced)
 }
 
 function updateChipCount(chips) {
     const chipCountElement = document.querySelector(".your-chips");
     chipCountElement.textContent = `Your chips: ${chips}`;
+}
+
+function betPlaced() {
+    document.querySelector(".betting-options").style.display = "none";
+    document.querySelector(".game-area").style.display = "block";
+
+    const chipCountElement = document.querySelector(".the-pot");
+    chipCountElement.textContent = `${currentBet}` * 2;
+
+    const playerChipCount = document.querySelector(".player-chips");
+    playerChipCount.textContent = `Your chips: ${playerChips}`;
+
 }
 
 function dealCards() {
