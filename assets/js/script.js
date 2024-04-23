@@ -1,8 +1,9 @@
 const suits = ['h', 'd', 'c', 's'];
 const values = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '01'];
 
-// Initialize an empty deck
 const deck = [];
+let currentBet = 0; 
+let playerChips = 3000;
 
 // Create the deck of cards
 for (const suit of suits) {
@@ -21,8 +22,7 @@ document.querySelector(".game-area").style.display = "none";
 document.querySelector(".end-game-screen").style.display = "none";
 document.querySelector(".betting-options").style.display = "none";
 
-// Initialize player's chip count
-let playerChips = 3000;
+
 
 // On document load
 document.addEventListener("DOMContentLoaded", function() {
@@ -50,14 +50,25 @@ function startGame(event) {
 }
 
 function handleBet(amount) {
-    // Subtract the bet amount from player's chip count
-    playerChips -= amount;
+    if (playerChips >= amount) {
+        // Add the bet amount to the current bet
+        currentBet += amount;
+        // Subtract the bet amount from player's chip count
+        playerChips -= amount;
+    } else {
+        // If player doesn't have enough chips, set the current bet to their remaining chips
+        currentBet += playerChips;
+        // Set player chips to 0
+        playerChips = 0;
+
+        console.log("All in")
+    }
     updateChipCount(playerChips);
 
     const betAmountElement = document.querySelector(".your-bet");
-    betAmountElement.textContent = `Your bet: ${amount}`;
+    betAmountElement.textContent = `Your bet: ${currentBet}`;
 
-    console.log("Player bets:", amount);
+    console.log("Player bets:", currentBet);
 }
 
 function updateChipCount(chips) {
