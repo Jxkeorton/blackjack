@@ -4,6 +4,7 @@ const values = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'
 const deck = [];
 let currentBet = 0; 
 let playerChips = 3000;
+let currentCardIndex = 4;
 
 // Create the deck of cards
 for (const suit of suits) {
@@ -90,7 +91,13 @@ function betPlaced() {
     playerChipCount.textContent = `Your chips: ${playerChips}`;
 
     dealCards()
-    
+
+    // Add event listeners for the hit and stand buttons
+    const hitButton = document.querySelector(".hit")
+    const standButton = document.querySelector(".stand")
+
+    hitButton.addEventListener("click", hit)
+    standButton.addEventListener("click", stand)
 }
 
 function dealCards() {
@@ -102,8 +109,8 @@ function dealCards() {
     const card4 = document.querySelector(".card4")
 
     card1.src = deck[0].imageUrl;
-    card3.src = deck[1].imageUrl;
-    card4.src = deck[2].imageUrl;
+    card3.src = deck[2].imageUrl;
+    card4.src = deck[3].imageUrl;
 
 }
 
@@ -115,6 +122,21 @@ function shuffleCards() {
 }
 
 function hit() {
+    const playersHand = document.querySelector(".players-hand");
+
+    // temporarily allowing 52 cards , soon will check if bust
+    if (currentCardIndex < deck.length) {
+        // Create a new img element
+        const newCard = document.createElement("img");
+        newCard.alt = `${deck[currentCardIndex].value}`
+        newCard.className = "card flip-in-ver-right"
+        newCard.src = deck[currentCardIndex].imageUrl;
+
+        currentCardIndex++;
+        playersHand.appendChild(newCard);
+    } else {
+        console.log("No more cards in the deck!");
+    }
 
 }
 
