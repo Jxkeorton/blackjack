@@ -120,17 +120,27 @@ section {
 }
 
 .players-hand {
+    display: flex;
+    justify-items: center;
+    align-items: center;
     margin-top: 10px;
+    position: relative;
+    height: 150px;
 }
 
 .card {
     width: 100px; 
-    position: relative;
 }
 
-.right {
-    right: 50px;
-    top: 30px;
+.card4 {
+    position: absolute; /* Position the cards absolutely within the relative container */
+    left: 20px; /* Adjust left position */
+    z-index: 2; /* Ensure card4 is on top */
+}
+
+.card3 {
+    position: absolute;
+    z-index: 1; /* Lower the z-index of card3 to be underneath card4 */
 }
 
 .players-chips {

@@ -7,6 +7,7 @@ const dealersHand = [];
 let currentBet = 0; 
 let playerChips = 3000;
 let currentCardIndex = 4;
+let multiplier = 1;
 
 // Create the deck of cards
 for (const suit of suits) {
@@ -156,32 +157,33 @@ function shuffleCards() {
 function hit() {
     const playersHandDiv = document.querySelector(".players-hand");
 
-    // 11 is the max ammount before going bust so my game has to account for this many cards
-    if (currentCardIndex < 11) {
-        // add card to players hand
-        playersHand.push(deck[currentCardIndex]);
+    // add card to player's hand
+    playersHand.push(deck[currentCardIndex]);
 
-        // Create a new img element
-        const newCard = document.createElement("img");
-        newCard.alt = `${deck[currentCardIndex].value}`
-        newCard.className = "card flip-in-ver-right"
-        newCard.src = deck[currentCardIndex].imageUrl;
+    // Create a new img element for the new card
+    const newCard = document.createElement("img");
+    newCard.alt = `${deck[currentCardIndex].value}`;
+    newCard.className = `card flip-in-ver-right card${currentCardIndex + 1}`;
+    newCard.src = deck[currentCardIndex].imageUrl;
 
-        currentCardIndex++;
-        playersHandDiv.appendChild(newCard);
+    // Adjust z-index to overlap previous cards
+    newCard.style.zIndex = currentCardIndex;
+    newCard.style.position = "absolute";
+    newCard.style.left = 20 + (multiplier * 20) + "px";
+    multiplier++
+
+    currentCardIndex++;
+    playersHandDiv.appendChild(newCard);
+
+    const value = getHandValue(playersHand);
+
+    if (value > 21) {
+        console.log("BUST, end game here player loses");
     } else {
-        console.log("No more cards in the deck!");
+        console.log(`hand value: ${value}`);
     }
-
-    const value = getHandValue(playersHand)
-
-    if (value > 21 ) {
-        console.log("BUST, end game here player loses")
-    } else {
-        console.log(`hand value: ${value}`)
-    }
-
 }
+
 
 // When the stand button is pressed this function will run
 function stand() {
