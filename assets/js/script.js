@@ -158,7 +158,48 @@ function hit() {
 }
 
 function stand() {
+    dealersTurn();
+}
 
+function dealersTurn() {
+    // Randomize the difficulty level of the dealer
+    const dealersHitMax = Math.floor(Math.random() * 3) + 15; // Generates a random number between 15 and 18
+
+    // Display the dealer's second card
+    const card2 = document.querySelector(".right");
+    card2.src = deck[currentCardIndex].imageUrl;
+    dealersHand.push(deck[currentCardIndex]);
+
+    currentCardIndex++;
+
+    let value = getHandValue(dealersHand);
+
+    // Dealer keeps hitting until the hand value is greater than the hit threshold
+    while (value < dealersHitMax && value <= 21) {
+        // Create a new img element for the additional card
+        const newDealerCard = document.createElement("img");
+        newDealerCard.alt = `${deck[currentCardIndex].value}`;
+        newDealerCard.className = "card flip-in-ver-right";
+        newDealerCard.src = deck[currentCardIndex].imageUrl;
+
+        currentCardIndex++;
+        dealersHand.push(deck[currentCardIndex]);
+        
+        const dealersHandDiv = document.querySelector(".dealers-hand");
+        dealersHandDiv.appendChild(newDealerCard);
+
+        value = getHandValue(dealersHand);
+    }
+
+    if (value > 21) {
+        console.log("Dealer busts");
+        console.log(dealersHand, value);
+    } else {
+        console.log(`Dealer stands with hand value: ${value}`);
+        console.log(dealersHand, value);
+
+        return value;
+    }
 }
 
 function determineWinner() {
