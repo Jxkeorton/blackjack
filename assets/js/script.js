@@ -52,6 +52,7 @@ function startGame(event) {
     bettingOptions.style.display = "block";
 }
 
+// When the user clicks a chip to bet with it recalculates the ammount
 function handleBet(amount) {
     if (playerChips >= amount) {
         // Add the bet amount to the current bet
@@ -82,6 +83,8 @@ function updateChipCount(chips) {
     chipCountElement.textContent = `Your chips: ${chips}`;
 }
 
+// Once the place bet button is pressed this function will display the game area
+// It also primes the buttons on the screen with the relevant functions.
 function betPlaced() {
     document.querySelector(".betting-options").style.display = "none";
     document.querySelector(".game-area").style.display = "block";
@@ -102,6 +105,7 @@ function betPlaced() {
     standButton.addEventListener("click", stand)
 }
 
+// As the game screen appears the cards are dealt to each player
 function dealCards() {
     console.log(deck)
 
@@ -120,6 +124,7 @@ function dealCards() {
 
 }
 
+// This function ensures that cards are sorted randomly each turn.
 function shuffleCards() {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -127,6 +132,9 @@ function shuffleCards() {
     }
 }
 
+// When the hit button is pressed this function will run.
+// It checks the player hand value not allowing the player to go above 21
+// If they go over 21 they lose the game instantly
 function hit() {
     const playersHandDiv = document.querySelector(".players-hand");
 
@@ -157,10 +165,18 @@ function hit() {
 
 }
 
+// When the stand button is pressed this function will run
 function stand() {
-    dealersTurn();
+    let dealervalue = dealersTurn();
+    let playerVaue = getHandValue(playersHand)
+
+    let winner = determineWinner(dealervalue, playerVaue)
+
+    console.log(winner);
 }
 
+// When this function is run the dealer will take his turn infront of the player
+// It randomly chooses the number the dealer will hit / stand at 
 function dealersTurn() {
     // Randomize the difficulty level of the dealer
     const dealersHitMax = Math.floor(Math.random() * 3) + 15; // Generates a random number between 15 and 18
@@ -202,10 +218,35 @@ function dealersTurn() {
     }
 }
 
-function determineWinner() {
-
+function determineWinner(dealerValue, playerValue) {
+    // Player busts, dealer wins
+    if (playerValue > 21) {
+        console.log("Player busts, dealer wins!");
+        return "dealer";
+    }
+    // Dealer busts, player wins
+    else if (dealerValue > 21) {
+        console.log("Dealer busts, player wins!");
+        return "player";
+    }
+    // Compare hand values
+    else {
+        if (playerValue > dealerValue) {
+            console.log("Player wins!");
+            return "player";
+        } else if (playerValue < dealerValue) {
+            console.log("Dealer wins!");
+            return "dealer";
+        } else {
+            console.log("It's a tie!");
+            return "tie";
+        }
+    }
 }
 
+
+// This function will determine the value of the cards a player or dealer is holding
+// It takes aces into account as they can be 1 or 11
 function getHandValue(hand) {
     let totalValue = 0;
     let numberOfAces = 0;
