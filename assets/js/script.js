@@ -8,6 +8,7 @@ let currentBet = 0;
 let playerChips = 3000;
 let currentCardIndex = 4;
 let multiplier = 1;
+let multiplier2 = 1;
 
 // Create the deck of cards
 for (const suit of suits) {
@@ -156,24 +157,59 @@ function shuffleCards() {
 // If they go over 21 they lose the game instantly
 function hit() {
     const playersHandDiv = document.querySelector(".players-hand");
+    const cards = document.getElementsByClassName("card")
 
     // add card to player's hand
     playersHand.push(deck[currentCardIndex]);
 
-    // Create a new img element for the new card
+    //// Create a new img element for the new card
     const newCard = document.createElement("img");
     newCard.alt = `${deck[currentCardIndex].value}`;
-    newCard.className = `card flip-in-ver-right card${currentCardIndex + 1}`;
     newCard.src = deck[currentCardIndex].imageUrl;
 
     // Adjust z-index to overlap previous cards
     newCard.style.zIndex = currentCardIndex;
     newCard.style.position = "absolute";
-    newCard.style.left = 20 + (multiplier * 20) + "px";
-    multiplier++
+
+    if (currentCardIndex < 9 ){
+        newCard.className = `card flip-in-ver-right card${currentCardIndex + 1}`;
+        newCard.style.left = 20 + (multiplier * 20) + "px";
+        multiplier++
+
+        playersHandDiv.appendChild(newCard);
+
+    } else if (currentCardIndex === 9) {
+        // creates new div and shrinks previous div for playershand then adds new card
+        playersHandDiv.style.height = "75px";
+
+        for (let i = 0; i < cards.length; i++){
+            cards[i].style.width = "50px";
+        }
+
+        newCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
+
+        // create new div 
+        const newDiv = document.createElement("div");
+        newDiv.className = "players-hand2"
+        newDiv.appendChild(newCard)
+
+        // Insert players-hand2 as the third from the last child
+        const parent = playersHandDiv.parentNode;
+        const thirdFromLastChild = parent.childNodes[7];
+        parent.insertBefore(newDiv, thirdFromLastChild.nextSibling);
+
+    } else {
+        const playersHandDiv2 = document.querySelector(".players-hand2");
+
+        newCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
+        newCard.style.left = 10 + (multiplier2 * 20) + "px";
+        multiplier2++;
+
+        playersHandDiv2.appendChild(newCard);
+
+    }
 
     currentCardIndex++;
-    playersHandDiv.appendChild(newCard);
 
     const value = getHandValue(playersHand);
 

@@ -128,8 +128,26 @@ section {
     height: 150px;
 }
 
+.players-hand2 {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    height: 75px;
+}
+
+.players-hand img,
+.players-hand2 img {
+    max-width: 100%; 
+}
+
 .card {
     width: 100px; 
+}
+
+.new-card {
+    width: 50px;
 }
 
 .card4 {
