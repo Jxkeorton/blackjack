@@ -44,12 +44,25 @@ document.addEventListener("DOMContentLoaded", function() {
 // Functions
 
 function startGame(event) {
-    event.preventDefault();
-    // Hide the game rules
+    if(event) {
+        event.preventDefault();
+    }
+
+    // Reset player chips and currentBet
+    playerChips = 3000
+    currentBet = 0;
+
+    console.log(playerChips, currentBet)
+    // Hide unrelevant areas
     document.querySelector(".game-rules").style.display = "none";
+    document.querySelector(".game-area").style.display = "none";
+    document.querySelector(".end-game-screen").style.display = "none";
+
     // Show the betting options
     const bettingOptions = document.querySelector(".betting-options");
     bettingOptions.style.display = "block";
+    
+    handleBet(0)
 }
 
 // When the user clicks a chip to bet with it recalculates the ammount
@@ -71,12 +84,13 @@ function handleBet(amount) {
 
         console.log("All in")
     }
+
+
     updateChipCount(playerChips);
 
     const betAmountElement = document.querySelector(".your-bet");
     betAmountElement.textContent = `Your bet: ${currentBet}`;
 
-    console.log("Player bets:", currentBet);
 
     const placeBetButton = document.querySelector(".place-bet-button")
     placeBetButton.addEventListener("click", betPlaced)
@@ -179,13 +193,13 @@ function stand() {
     standButton.style.display = "none";
 
     // Calculate value of hands
-    let dealervalue = dealersTurn();
-    let playerVaue = getHandValue(playersHand)
+    let dealerValue = dealersTurn();
+    let playerValue = getHandValue(playersHand)
 
+    console.log(dealerValue)
     // Determine winner based off hand values
-    let winner = determineWinner(dealervalue, playerVaue)
+    let winner = determineWinner(dealerValue, playerValue)
 
-    console.log(winner);
 }
 
 // When this function is run the dealer will take his turn infront of the player
@@ -286,4 +300,13 @@ function getHandValue(hand) {
 
 function endGame() {
 
+}
+
+// Nav links pressed to navigate to home screen / rules page
+function navigateHome() {
+    document.querySelector(".game-area").style.display = "none";
+    document.querySelector(".end-game-screen").style.display = "none";
+    document.querySelector(".betting-options").style.display = "none";
+
+    document.querySelector(".game-rules").style.display = "block";
 }
