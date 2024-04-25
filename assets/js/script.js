@@ -2,6 +2,8 @@ const suits = ['h', 'd', 'c', 's'];
 const values = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '01'];
 
 const deck = [];
+const playersHand = [];
+const dealersHand = [];
 let currentBet = 0; 
 let playerChips = 3000;
 let currentCardIndex = 4;
@@ -112,6 +114,10 @@ function dealCards() {
     card3.src = deck[2].imageUrl;
     card4.src = deck[3].imageUrl;
 
+    dealersHand.push(deck[0]);
+    playersHand.push(deck[2]); 
+    playersHand.push(deck[3]);
+
 }
 
 function shuffleCards() {
@@ -122,10 +128,13 @@ function shuffleCards() {
 }
 
 function hit() {
-    const playersHand = document.querySelector(".players-hand");
+    const playersHandDiv = document.querySelector(".players-hand");
 
-    // temporarily allowing 52 cards , soon will check if bust
-    if (currentCardIndex < deck.length) {
+    // 11 is the max ammount before going bust so my game has to account for this many cards
+    if (currentCardIndex < 11) {
+        // add card to players hand
+        playersHand.push(deck[currentCardIndex]);
+
         // Create a new img element
         const newCard = document.createElement("img");
         newCard.alt = `${deck[currentCardIndex].value}`
@@ -133,9 +142,17 @@ function hit() {
         newCard.src = deck[currentCardIndex].imageUrl;
 
         currentCardIndex++;
-        playersHand.appendChild(newCard);
+        playersHandDiv.appendChild(newCard);
     } else {
         console.log("No more cards in the deck!");
+    }
+
+    const value = getHandValue(playersHand)
+
+    if (value > 21 ) {
+        console.log("BUST, end game here player loses")
+    } else {
+        console.log(`hand value: ${value}`)
     }
 
 }
@@ -148,8 +165,27 @@ function determineWinner() {
 
 }
 
-function getHandValue() {
+function getHandValue(hand) {
+    let totalValue = 0;
+    let numberOfAces = 0;
 
+    for (let card of hand) {
+        // Extract the numeric value of the card (assuming all face cards have value of 10)
+        const value = parseInt(card.value) > 10 ? 10 : parseInt(card.value);
+        totalValue += value;
+
+        if (value === 1) {
+            numberOfAces++;
+        }
+    }
+
+    // Adjust the total value to account for Aces (Aces can be 1 or 11)
+    while (numberOfAces > 0 && totalValue + 10 <= 21) {
+        totalValue += 10; // recalculate the value of the hand
+        numberOfAces--; // ensure we can escape the while loop 
+    }
+
+    return totalValue;
 }
 
 function endGame() {
