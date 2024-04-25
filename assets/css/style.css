@@ -137,8 +137,28 @@ section {
     height: 75px;
 }
 
+.dealers-hand {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    height: 150px;
+}
+
+.dealers-hand2 {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    height: 75px;
+}
+
 .players-hand img,
-.players-hand2 img {
+.players-hand2 img,
+.dealers-hand img,
+.dealers-hand2 img {
     max-width: 100%; 
 }
 
@@ -150,13 +170,15 @@ section {
     width: 50px;
 }
 
-.card4 {
+.card4,
+.card2 {
     position: absolute; /* Position the cards absolutely within the relative container */
     left: 105px;
     z-index: 2; /* Ensure card4 is on top */
 }
 
-.card3 {
+.card3,
+.card1 {
     position: absolute;
     z-index: 1; /* Lower the z-index of card3 to be underneath card4 */
 }

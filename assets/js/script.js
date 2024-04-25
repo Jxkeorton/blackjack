@@ -7,8 +7,12 @@ const dealersHand = [];
 let currentBet = 0; 
 let playerChips = 3000;
 let currentCardIndex = 4;
+
 let multiplier = 1;
 let multiplier2 = 1;
+
+let dealerMultiplier = 1;
+let dealerMultiplier2 = 1;
 
 // Create the deck of cards
 for (const suit of suits) {
@@ -157,7 +161,7 @@ function shuffleCards() {
 // If they go over 21 they lose the game instantly
 function hit() {
     const playersHandDiv = document.querySelector(".players-hand");
-    const cards = document.getElementsByClassName("card")
+    const playerCards = playersHandDiv.querySelectorAll(".card");
 
     // add card to player's hand
     playersHand.push(deck[currentCardIndex]);
@@ -187,8 +191,8 @@ function hit() {
         // creates new div and shrinks previous div for playershand then adds new card
         playersHandDiv.style.height = "75px";
 
-        for (let i = 0; i < cards.length; i++){
-            cards[i].style.width = "50px";
+        for (let i = 0; i < playerCards.length; i++){
+            playerCards[i].style.width = "50px";
         }
 
         newCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
@@ -248,11 +252,12 @@ function stand() {
 // When this function is run the dealer will take his turn infront of the player
 // It randomly chooses the number the dealer will hit / stand at 
 function dealersTurn() {
+
     // Randomize the difficulty level of the dealer
     const dealersHitMax = Math.floor(Math.random() * 3) + 15; // Generates a random number between 15 and 18
-
+    
     // Display the dealer's second card
-    const card2 = document.querySelector(".right");
+    const card2 = document.querySelector(".card2");
     card2.src = deck[currentCardIndex].imageUrl;
     dealersHand.push(deck[currentCardIndex]);
 
@@ -262,18 +267,63 @@ function dealersTurn() {
 
     // Dealer keeps hitting until the hand value is greater than the hit threshold
     while (value < dealersHitMax && value <= 21) {
+        const dealersHandDiv = document.querySelector(".dealers-hand");
+
         // Create a new img element for the additional card
         const newDealerCard = document.createElement("img");
         newDealerCard.alt = `${deck[currentCardIndex].value}`;
-        newDealerCard.className = "card flip-in-ver-right";
         newDealerCard.src = deck[currentCardIndex].imageUrl;
 
+        // Adjust z-index to overlap previous cards
+        newDealerCard.style.zIndex = currentCardIndex;
+        newDealerCard.style.position = "absolute";
+        if (dealersHand.length === 2) {
+            let card2 = document.querySelector(".card2")
+            card2.style.left = "20px"
+        }
+    
+        if (dealersHand.length < 6 ){
+            newDealerCard.className = `card flip-in-ver-right card${currentCardIndex + 1}`;
+            newDealerCard.style.left = 20 + (dealerMultiplier * 20) + "px";
+            dealerMultiplier++
+    
+            dealersHandDiv.appendChild(newDealerCard);
+    
+        } else if (dealersHand.length === 6) {
+            // creates new div and shrinks previous div for playershand then adds new card
+            dealersHandDiv.style.height = "75px";
+            // Get all images within the dealers-hand div with the class card
+            const dealerCards = dealersHandDiv.querySelectorAll(".card");
+            for (let i = 0; i < dealerCards.length; i++){
+                dealerCards[i].style.width = "50px";
+            }
+    
+            newDealerCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
+    
+            // create new div 
+            const newDiv = document.createElement("div");
+            newDiv.className = "dealers-hand2"
+            newDiv.appendChild(newDealerCard)
+    
+            // Insert players-hand2 as the third from the last child
+            const parent = dealersHandDiv.parentNode;
+            const thirdFromLastChild = parent.childNodes[3];
+            parent.insertBefore(newDiv, thirdFromLastChild.nextSibling);
+    
+        } else {
+            const dealersHandDiv2 = document.querySelector(".dealers-hand2");
+    
+            newDealerCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
+            newDealerCard.style.left = 10 + (dealerMultiplier2 * 20) + "px";
+            dealerMultiplier2++;
+    
+            dealersHandDiv2.appendChild(newDealerCard);
+    
+        }
+    
         currentCardIndex++;
         dealersHand.push(deck[currentCardIndex]);
         
-        const dealersHandDiv = document.querySelector(".dealers-hand");
-        dealersHandDiv.appendChild(newDealerCard);
-
         value = getHandValue(dealersHand);
     }
 
