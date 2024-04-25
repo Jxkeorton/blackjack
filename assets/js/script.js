@@ -54,6 +54,10 @@ function startGame(event) {
 
 // When the user clicks a chip to bet with it recalculates the ammount
 function handleBet(amount) {
+
+    // Accounts for chipcount from previous rounds
+    updateChipCount(playerChips);
+
     if (playerChips >= amount) {
         // Add the bet amount to the current bet
         currentBet += amount;
@@ -167,9 +171,18 @@ function hit() {
 
 // When the stand button is pressed this function will run
 function stand() {
+
+    // Hide buttons from UI
+    const hitButton = document.querySelector(".hit");
+    const standButton = document.querySelector(".stand");
+    hitButton.style.display = "none";
+    standButton.style.display = "none";
+
+    // Calculate value of hands
     let dealervalue = dealersTurn();
     let playerVaue = getHandValue(playersHand)
 
+    // Determine winner based off hand values
     let winner = determineWinner(dealervalue, playerVaue)
 
     console.log(winner);
@@ -218,6 +231,7 @@ function dealersTurn() {
     }
 }
 
+// Once both turns are played this function determines the winner based off of the value of the hands.
 function determineWinner(dealerValue, playerValue) {
     // Player busts, dealer wins
     if (playerValue > 21) {
