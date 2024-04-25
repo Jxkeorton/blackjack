@@ -152,7 +152,7 @@ section {
 
 .card4 {
     position: absolute; /* Position the cards absolutely within the relative container */
-    left: 20px; /* Adjust left position */
+    left: 105px;
     z-index: 2; /* Ensure card4 is on top */
 }
 

@@ -171,6 +171,11 @@ function hit() {
     newCard.style.zIndex = currentCardIndex;
     newCard.style.position = "absolute";
 
+    if (currentCardIndex === 4) {
+        let card4 = document.querySelector(".card4")
+        card4.style.left = "20px"
+    }
+
     if (currentCardIndex < 9 ){
         newCard.className = `card flip-in-ver-right card${currentCardIndex + 1}`;
         newCard.style.left = 20 + (multiplier * 20) + "px";
