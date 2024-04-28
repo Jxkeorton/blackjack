@@ -99,8 +99,8 @@ function handleBet(amount) {
 
 
     const placeBetButton = document.querySelector(".place-bet-button")
-    placeBetButton.addEventListener("click", function(){
-        if(currentBet == 0 ){
+    placeBetButton.addEventListener("click", function() {
+        if(currentBet == 0){
             alert("Please place a bet")
         } else {
             betPlaced()
@@ -249,7 +249,7 @@ function stand() {
     let dealerValue = dealersTurn();
     let playerValue = getHandValue(playersHand)
 
-    console.log(dealerValue)
+    console.log("Dealer value:", dealerValue, "Player value:", playerValue)
     // Determine winner based off hand values
     let winner = determineWinner(dealerValue, playerValue)
 
@@ -264,10 +264,8 @@ function dealersTurn() {
     
     // Display the dealer's second card
     const card2 = document.querySelector(".card2");
-    card2.src = deck[currentCardIndex].imageUrl;
-    dealersHand.push(deck[currentCardIndex]);
-
-    currentCardIndex++;
+    card2.src = deck[1].imageUrl;
+    dealersHand.push(deck[1]);
 
     let value = getHandValue(dealersHand);
 
@@ -326,22 +324,13 @@ function dealersTurn() {
             dealersHandDiv2.appendChild(newDealerCard);
     
         }
-    
-        currentCardIndex++;
         dealersHand.push(deck[currentCardIndex]);
+        currentCardIndex++;
         
         value = getHandValue(dealersHand);
     }
 
-    if (value > 21) {
-        console.log("Dealer busts");
-        console.log(dealersHand, value);
-    } else {
-        console.log(`Dealer stands with hand value: ${value}`);
-        console.log(dealersHand, value);
-
-        return value;
-    }
+    return value;
 }
 
 // Once both turns are played this function determines the winner based off of the value of the hands.
