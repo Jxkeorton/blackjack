@@ -28,10 +28,14 @@ for (const suit of suits) {
     }
 }
 
+let gameArea = document.querySelector(".game-area").style.display
+let endGameArea = document.querySelector(".end-game-screen").style.display
+let bettingOptions = document.querySelector(".betting-options").style.display
+
 // the game area and end game screen is hidden initially
-document.querySelector(".game-area").style.display = "none";
-document.querySelector(".end-game-screen").style.display = "none";
-document.querySelector(".betting-options").style.display = "none";
+gameArea.style.display = "none";
+endGameArea.style.display = "none";
+bettingOptions.style.display = "none";
 
 // Event listeners
 // Add event listeners for the hit and stand buttons
@@ -119,7 +123,6 @@ function handleBet(amount) {
 
         console.log("All in")
     }
-
 
     updateChipCount(playerChips);
 
@@ -359,14 +362,10 @@ function determineWinner(dealerValue, playerValue) {
     if (playerValue > 21) {
         console.log("Player busts, dealer wins!");
         return "dealer";
-    }
-    // Dealer busts, player wins
-    else if (dealerValue > 21) {
+    } else if (dealerValue > 21) {
         console.log("Dealer busts, player wins!");
         return "player";
-    }
-    // Compare hand values
-    else {
+    } else {
         if (playerValue > dealerValue) {
             console.log("Player wins!");
             return "player";
@@ -379,7 +378,6 @@ function determineWinner(dealerValue, playerValue) {
         }
     }
 }
-
 
 // This function will determine the value of the cards a player or dealer is holding
 // It takes aces into account as they can be 1 or 11
@@ -404,6 +402,23 @@ function getHandValue(hand) {
     }
 
     return totalValue;
+}
+
+function resultsPage(winner) {
+    gameArea.style.display = 'none';
+    endGameArea.style.display = 'block';
+
+    let title = document.querySelector(".outcome-title");
+    let nextHandButton = document.querySelector(".next-hand-button");
+
+    if(winner === "player"){
+
+    } else if(winner === "dealer"){
+
+    } else {
+        //tie
+        return
+    }
 }
 
 function endGame() {
