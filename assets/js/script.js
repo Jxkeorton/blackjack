@@ -31,6 +31,24 @@ document.querySelector(".game-area").style.display = "none";
 document.querySelector(".end-game-screen").style.display = "none";
 document.querySelector(".betting-options").style.display = "none";
 
+// Event listeners
+// Add event listeners for the hit and stand buttons
+const hitButton = document.querySelector(".hit")
+const standButton = document.querySelector(".stand")
+
+hitButton.addEventListener("click", hit)
+standButton.addEventListener("click", stand)
+
+// Add event listeners to place bet button
+const placeBetButton = document.querySelector(".place-bet-button")
+    placeBetButton.addEventListener("click", function() {
+        if(currentBet == 0){
+            alert("Please place a bet")
+        } else {
+            betPlaced()
+        }
+    })
+
 
 
 // On document load
@@ -40,7 +58,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const startButton =  document.querySelector(".play-button");
     // Event listener for the "Let's Play" button
     if(startButton) {
-        startButton.addEventListener("click", startGame);
+        startButton.addEventListener("click", function() {
+            if(currentBet > 0) {
+                // Hide unrelevant areas
+                document.querySelector(".game-rules").style.display = "none";
+                document.querySelector(".game-area").style.display = "block";
+                document.querySelector(".betting-options").style.display = "none";
+                document.querySelector(".end-game-screen").style.display = "none";
+            } else {
+                startGame();
+            }
+        });
     } else {
         console.error('Start button not found');
     }
@@ -58,7 +86,6 @@ function startGame(event) {
     playerChips = 3000
     currentBet = 0;
 
-    console.log(playerChips, currentBet)
     // Hide unrelevant areas
     document.querySelector(".game-rules").style.display = "none";
     document.querySelector(".game-area").style.display = "none";
@@ -68,7 +95,7 @@ function startGame(event) {
     const bettingOptions = document.querySelector(".betting-options");
     bettingOptions.style.display = "block";
     
-    handleBet(0)
+
 }
 
 // When the user clicks a chip to bet with it recalculates the ammount
@@ -97,15 +124,6 @@ function handleBet(amount) {
     const betAmountElement = document.querySelector(".your-bet");
     betAmountElement.textContent = `Your bet: ${currentBet}`;
 
-
-    const placeBetButton = document.querySelector(".place-bet-button")
-    placeBetButton.addEventListener("click", function() {
-        if(currentBet == 0){
-            alert("Please place a bet")
-        } else {
-            betPlaced()
-        }
-    })
 }
 
 function updateChipCount(chips) {
@@ -126,13 +144,6 @@ function betPlaced() {
     playerChipCount.textContent = `Your chips: ${playerChips}`;
 
     dealCards()
-
-    // Add event listeners for the hit and stand buttons
-    const hitButton = document.querySelector(".hit")
-    const standButton = document.querySelector(".stand")
-
-    hitButton.addEventListener("click", hit)
-    standButton.addEventListener("click", stand)
 }
 
 // As the game screen appears the cards are dealt to each player
@@ -249,7 +260,7 @@ function stand() {
     let dealerValue = dealersTurn();
     let playerValue = getHandValue(playersHand)
 
-    console.log("Dealer value:", dealerValue, "Player value:", playerValue)
+    console.log("Dealer value:", dealerValue, "Player value:", playerValue, dealersHand, playersHand)
     // Determine winner based off hand values
     let winner = determineWinner(dealerValue, playerValue)
 
@@ -325,6 +336,7 @@ function dealersTurn() {
     
         }
         dealersHand.push(deck[currentCardIndex]);
+
         currentCardIndex++;
         
         value = getHandValue(dealersHand);
