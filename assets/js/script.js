@@ -14,6 +14,8 @@ let multiplier2 = 1;
 let dealerMultiplier = 1;
 let dealerMultiplier2 = 1;
 
+let winner = "";
+
 // Create the deck of cards
 for (const suit of suits) {
     for (const value of values) {
@@ -263,7 +265,7 @@ function stand() {
 
     console.log("Dealer value:", dealerValue, "Player value:", playerValue, dealersHand, playersHand)
     // Determine winner based off hand values
-    let winner = determineWinner(dealerValue, playerValue)
+    winner = determineWinner(dealerValue, playerValue)
 
 }
 
