@@ -99,7 +99,13 @@ function handleBet(amount) {
 
 
     const placeBetButton = document.querySelector(".place-bet-button")
-    placeBetButton.addEventListener("click", betPlaced)
+    placeBetButton.addEventListener("click", function(){
+        if(currentBet == 0 ){
+            alert("Please place a bet")
+        } else {
+            betPlaced()
+        }
+    })
 }
 
 function updateChipCount(chips) {
@@ -143,7 +149,7 @@ function dealCards() {
     card4.src = deck[3].imageUrl;
 
     dealersHand.push(deck[0]);
-    playersHand.push(deck[2]); 
+    playersHand.push(deck[2]);
     playersHand.push(deck[3]);
 
 }
