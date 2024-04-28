@@ -241,8 +241,9 @@ function hit() {
 
     if (value > 21) {
         console.log("BUST, end game here player loses");
-    } else {
-        console.log(`hand value: ${value}`);
+        playerBust = document.querySelector(".player-bust")
+        playerBust.style.display = "block";
+        stand()
     }
 }
 
@@ -340,6 +341,11 @@ function dealersTurn() {
         currentCardIndex++;
         
         value = getHandValue(dealersHand);
+    }
+
+    if (value > 21) {
+        dealerBust = document.querySelector(".dealer-bust")
+        dealerBust.style.display = "block";
     }
 
     return value;

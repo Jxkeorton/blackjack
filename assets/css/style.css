@@ -137,6 +137,21 @@ section {
     height: 75px;
 }
 
+.bust {
+    position: absolute; /* Position absolutely */
+    top: 50%; /* Move to the middle vertically */
+    left: 50%; /* Move to the middle horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    z-index: 100;
+    font-size: 3rem;
+    font-weight: bolder;
+    color: #e53935;
+    background-color: black;
+    border-radius: 10%;
+    padding: 5px;
+    display: none;
+}
+
 .dealers-hand {
     display: flex;
     justify-items: center;
