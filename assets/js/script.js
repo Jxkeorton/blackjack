@@ -461,11 +461,50 @@ function resultsPage(winner) {
 }
 
 function nextHand() {
-    
+    const endGameScreen = document.querySelector(".end-game-screen");
+
+    // Bust text hidden
+    dealerBust = document.querySelector(".dealer-bust")
+    dealerBust.style.display = "none";
+    playerBust = document.querySelector(".player-bust")
+    playerBust.style.display = "none";
+
+    endGameScreen.style.display = "none"
+    document.querySelector(".game-area").style.display = "none";
+
+    // show buttons
+    const hitButton = document.querySelector(".hit");
+    const standButton = document.querySelector(".stand");
+    hitButton.style.display = "block";
+    standButton.style.display = "block";
+
+    // Replace specific card images with card back image
+    const cardBackUrl = "./assets/images/card-back.webp";
+    const cardClasses = ["card1", "card2", "card3", "card4"];
+
+    cardClasses.forEach(className => {
+        const cardElement = document.querySelector(`.${className}`);
+        cardElement.src = cardBackUrl;
+    });
+
+    // Remove other card images
+    const allCards = document.querySelectorAll(".card, .new-card");
+    allCards.forEach(card => {
+        if (!cardClasses.some(className => card.classList.contains(className))) {
+            card.parentNode.removeChild(card);
+        }
+    });
+
+    // Reset player and dealer hands
+    playersHand.length = 0;
+    dealersHand.length = 0;
+
+
+    document.querySelector(".betting-options").style.display = "block";
 }
 
 function resetGame() {
-   
+    
 }
 
 
