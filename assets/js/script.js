@@ -129,6 +129,16 @@ function handleBet(amount) {
 
 }
 
+function resetBet() {
+    playerChips += currentBet
+    currentBet = 0
+
+    let yourBetElement = document.querySelector(".your-bet")
+    yourBetElement.textContent = `Your bet: ${currentBet}`
+    let yourChipsElement = document.querySelector(".your-chips")
+    yourChipsElement.textContent = `Your chips: ${playerChips}`
+}
+
 function updateChipCount(chips) {
     const chipCountElement = document.querySelector(".your-chips");
     chipCountElement.textContent = `Your chips: ${chips}`;
