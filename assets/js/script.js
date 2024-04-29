@@ -408,27 +408,30 @@ function resultsPage(winner) {
     const endGameScreen = document.querySelector(".end-game-screen");
     const outcomeTitle = endGameScreen.querySelector(".outcome-title");
     const nextHandButton = endGameScreen.querySelector(".next-hand-button");
+    const endGameChips = endGameScreen.querySelector(".end-game-chips");
 
     // Display the outcome based on the winner
     if (winner === "player") {
         outcomeTitle.textContent = "You win!";
         // Player wins, double the current bet and add it to player's chips
-        console.log(currentBet)
-        console.log(playerChips)
         playerChips += (currentBet * 2);
-        console.log(playerChips)
+
+        endGameChips.textContent = `Your Chips: ${playerChips}`
     } else if (winner === "dealer") {
         // Player loses, no change to chips
         if(playerChips === 0){
             nextHandButton.textContent = "Reset Game";
             outcomeTitle.textContent = "Game Over"
+            endGameChips.textContent = 'Out of Chips!!'
         } else {
             outcomeTitle.textContent = "Dealer wins!";
+            endGameChips.textContent = `Your Chips: ${playerChips}`
         }
     } else {
         outcomeTitle.textContent = "It's a tie!";
         // Tie, return the current bet to player's chips
         playerChips += currentBet;
+        endGameChips.textContent = `Your Chips: ${playerChips}`
     }
 
     // UI bet ammount back to zero
