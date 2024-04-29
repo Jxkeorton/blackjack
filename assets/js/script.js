@@ -475,8 +475,8 @@ function nextHand() {
     // show buttons
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
-    hitButton.style.display = "block";
-    standButton.style.display = "block";
+    hitButton.style.display = "inline";
+    standButton.style.display = "inline";
 
     // Replace specific card images with card back image
     const cardBackUrl = "./assets/images/card-back.webp";
@@ -514,8 +514,8 @@ function resetGame() {
     // show buttons
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
-    hitButton.style.display = "block";
-    standButton.style.display = "block";
+    hitButton.style.display = "inline";
+    standButton.style.display = "inline";
 
     // Replace specific card images with card back image
     const cardBackUrl = "./assets/images/card-back.webp";
