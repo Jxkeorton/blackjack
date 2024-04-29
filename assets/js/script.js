@@ -131,6 +131,7 @@ function handleBet(amount) {
         playerChips = 0;
 
         console.log("All in")
+        alert("You are All-in!")
     }
 
     updateChipCount(playerChips);
