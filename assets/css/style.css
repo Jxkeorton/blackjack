@@ -256,6 +256,12 @@ section {
     background-color: #808080; /* Dark Grey */
 }
 
+.all-in {
+    background-color: blue;
+    color: aliceblue;
+    font-size: smaller;
+}
+
 /* Hover Effect for Buttons and Chips */
 .game-control:hover, .chip:hover {
     opacity: 0.8;
