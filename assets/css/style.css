@@ -111,6 +111,11 @@ section {
 }
 
 /* Game Area */
+.game-area {
+    position: relative; 
+    z-index: 1; 
+}
+
 .dealers-hand{
     margin-top: 20px;
 }
@@ -263,6 +268,17 @@ section {
 
 .stand:hover {
     background-color: #e53935; /* Darker Red */
+}
+
+/* End Game area */
+.end-game-screen {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed; /* Change position to fixed */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    z-index: 999; /* Set a higher z-index to ensure it appears on top */
+    display: none;
 }
 
 
