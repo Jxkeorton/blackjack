@@ -102,6 +102,8 @@ function startGame(event) {
 
     // update UI
     updateChipCount(playerChips);
+    playersBet = document.querySelector(".your-bet")
+    playersBet.textContent = "Your bet: 0"
 
     // Hide unrelevant areas
     document.querySelector(".game-rules").style.display = "none";
