@@ -27,15 +27,9 @@ for (const suit of suits) {
         deck.push(card);
     }
 }
-
-let gameArea = document.querySelector(".game-area").style.display
-let endGameArea = document.querySelector(".end-game-screen").style.display
-let bettingOptions = document.querySelector(".betting-options").style.display
-
-// the game area and end game screen is hidden initially
-gameArea.style.display = "none";
-endGameArea.style.display = "none";
-bettingOptions.style.display = "none";
+document.querySelector(".game-area").style.display = "none"
+document.querySelector(".end-game-screen").style.display = "none"
+document.querySelector(".betting-options").style.display = "none"
 
 // Event listeners
 // Add event listeners for the hit and stand buttons
@@ -91,6 +85,10 @@ function startGame(event) {
     // Reset player chips and currentBet
     playerChips = 3000
     currentBet = 0;
+
+    // update UI
+    const chipCountElement = document.querySelector(".your-chips");
+    chipCountElement.textContent = `Your chips: ${playerChips}`;
 
     // Hide unrelevant areas
     document.querySelector(".game-rules").style.display = "none";
@@ -269,6 +267,8 @@ function stand() {
     console.log("Dealer value:", dealerValue, "Player value:", playerValue, dealersHand, playersHand)
     // Determine winner based off hand values
     winner = determineWinner(dealerValue, playerValue)
+    console.log("winner:", winner)
+    resultsPage(winner)
 
 }
 
@@ -405,25 +405,69 @@ function getHandValue(hand) {
 }
 
 function resultsPage(winner) {
-    gameArea.style.display = 'none';
-    endGameArea.style.display = 'block';
+    const endGameScreen = document.querySelector(".end-game-screen");
+    const outcomeTitle = endGameScreen.querySelector(".outcome-title");
+    const nextHandButton = endGameScreen.querySelector(".next-hand-button");
 
-    let title = document.querySelector(".outcome-title");
-    let nextHandButton = document.querySelector(".next-hand-button");
-
-    if(winner === "player"){
-
-    } else if(winner === "dealer"){
-
+    // Display the outcome based on the winner
+    if (winner === "player") {
+        outcomeTitle.textContent = "You win!";
+        // Player wins, double the current bet and add it to player's chips
+        console.log(currentBet)
+        console.log(playerChips)
+        playerChips += (currentBet * 2);
+        console.log(playerChips)
+    } else if (winner === "dealer") {
+        // Player loses, no change to chips
+        if(playerChips === 0){
+            nextHandButton.textContent = "Reset Game";
+            outcomeTitle.textContent = "Game Over"
+        } else {
+            outcomeTitle.textContent = "Dealer wins!";
+        }
     } else {
-        //tie
-        return
+        outcomeTitle.textContent = "It's a tie!";
+        // Tie, return the current bet to player's chips
+        playerChips += currentBet;
     }
+
+    // UI bet ammount back to zero
+    const betAmountElement = document.querySelector(".your-bet");
+    betAmountElement.textContent = 'Your bet: 0';
+
+    // Update chip count on the UI
+    updateChipCount(playerChips);
+
+    // Reset variables
+    currentCardIndex = 4;
+    currentBet = 0;
+    multiplier = 1;
+    multiplier2 = 1;
+    dealerMultiplier = 1;
+    dealerMultiplier2 = 1;
+
+    // Show the end game screen
+    endGameScreen.style.display = "block";
+
+    // Add event listener to the next hand button
+    nextHandButton.addEventListener("click", function() {
+        // If the player has more than zero chips, start a new hand
+        if (playerChips > 0) {
+            nextHand()
+        } else {
+            resetGame()
+        }
+    });
 }
 
-function endGame() {
-
+function nextHand() {
+    
 }
+
+function resetGame() {
+   
+}
+
 
 // Nav links pressed to navigate to home screen / rules page
 function navigateHome() {
