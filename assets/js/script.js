@@ -39,17 +39,31 @@ const standButton = document.querySelector(".stand")
 hitButton.addEventListener("click", hit)
 standButton.addEventListener("click", stand)
 
-// Add event listeners to place bet button
+
 const placeBetButton = document.querySelector(".place-bet-button")
-    placeBetButton.addEventListener("click", function() {
-        if(currentBet == 0){
-            alert("Please place a bet")
-        } else {
-            betPlaced()
-        }
-    })
+placeBetButton.addEventListener("click", function() {
+    if(currentBet == 0){
+        alert("Please place a bet")
+    } else {
+        betPlaced()
+    }
+})
 
+const playGameLink = document.querySelector(".nav-links:nth-child(2) a");
+updatePlayGameLink(playGameLink);
 
+function updatePlayGameLink(linkElement) {
+    if (playerChips !== 3000) {
+        linkElement.textContent = "Reset Game";
+    } else {
+        linkElement.textContent = "Play Game";
+    }
+}
+
+// Add event listener to update the link text dynamically
+document.addEventListener("chipCountUpdated", function() {
+    updatePlayGameLink(playGameLink);
+});
 
 // On document load
 document.addEventListener("DOMContentLoaded", function() {
@@ -87,8 +101,7 @@ function startGame(event) {
     currentBet = 0;
 
     // update UI
-    const chipCountElement = document.querySelector(".your-chips");
-    chipCountElement.textContent = `Your chips: ${playerChips}`;
+    updateChipCount(playerChips);
 
     // Hide unrelevant areas
     document.querySelector(".game-rules").style.display = "none";
@@ -98,8 +111,6 @@ function startGame(event) {
     // Show the betting options
     const bettingOptions = document.querySelector(".betting-options");
     bettingOptions.style.display = "block";
-    
-
 }
 
 // When the user clicks a chip to bet with it recalculates the ammount
@@ -142,6 +153,7 @@ function resetBet() {
 function updateChipCount(chips) {
     const chipCountElement = document.querySelector(".your-chips");
     chipCountElement.textContent = `Your chips: ${chips}`;
+    document.dispatchEvent(new Event("chipCountUpdated"));
 }
 
 // Once the place bet button is pressed this function will display the game area
