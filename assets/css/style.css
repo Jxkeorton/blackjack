@@ -72,21 +72,24 @@ section {
 .game-rules {
     text-align: center;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 20px;
+    background-color: #2a5c5d;
+    border-radius: 5%;
 }
 
 .game-rules h2 {
     font-size: 23px;
+    margin-bottom: 8px;
 }
 
 .game-rules p {
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 10px;
+    font-weight: 800;
 }
 
 .game-rules ul {
-    list-style-type: none;
-    padding: 0;
+    padding: 0 20px;
 }
 
 .game-rules li {
@@ -106,7 +109,7 @@ section {
     font-weight: bold;
     text-transform: uppercase;
     transition: opacity 0.3s ease;
-    background-color: #c6896a;
+    background-color: #9a2619
 }
 
 .play-button:hover {
