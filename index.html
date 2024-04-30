@@ -76,15 +76,15 @@
             <h2>Blackjack Royale</h2>
             <h3>Choose your bet</h3>
             <p class="your-chips">Your chips: 3000</p>
+            <p class="your-bet">Your bet: 0</p>
             <div class="chips">
                 <button class="chip gold" value="1000" onclick="handleBet(1000)">1000</button>
                 <button class="chip bronze" value="500" onclick="handleBet(500)">500</button>
                 <button class="chip light-grey" value="100" onclick="handleBet(100)">100</button>
                 <button class="chip dark-grey" value="50" onclick="handleBet(50)">50</button>
             </div>
-            <button class="chip all-in" value="50" onclick="handleBet(playerChips)">All IN</button>
+            <button class="all-in-button" value="50" onclick="handleBet(playerChips)">All IN</button>
 
-            <p class="your-bet">Your bet: 0</p>
             <button class="place-bet-button">Place Bet</button>
             <button class="reset-bet-button" onclick="resetBet()">Reset Bet</button>
         </div>

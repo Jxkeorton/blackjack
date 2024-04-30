@@ -75,6 +75,7 @@ section {
     margin: 0 20px;
     background-color: #2a5c5d;
     border-radius: 5%;
+    border: 3px solid white;
 }
 
 .game-rules h2 {
@@ -109,7 +110,7 @@ section {
     font-weight: bold;
     text-transform: uppercase;
     transition: opacity 0.3s ease;
-    background-color: #9a2619
+    background-color: #9a2619;
 }
 
 .play-button:hover {
@@ -123,7 +124,11 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: #2a5c5d;
+    border-radius: 5%;
+    padding: 10px;
     gap: 10px;
+    border: 3px solid white;
 }
 
 .place-bet-button {
@@ -136,7 +141,7 @@ section {
     font-weight: bold;
     text-transform: uppercase;
     transition: opacity 0.3s ease;
-    background-color: #c6896a;
+    background-color: #9a2619;
 }
 .reset-bet-button {
     padding: 10px 20px;
@@ -149,6 +154,32 @@ section {
     text-transform: uppercase;
     transition: opacity 0.3s ease;
     background-color: black;
+}
+
+.all-in-button {
+    display: block;
+    color: black;
+    padding: 10px 20px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
+    background-color: rgb(0, 107, 200);
+    border: 3px solid black;
+}
+
+.your-chips,
+.your-bet
+ {
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    padding: 3px;
+    margin: 10px;
 }
 
 /* Game Area */
