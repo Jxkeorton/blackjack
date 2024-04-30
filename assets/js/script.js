@@ -187,6 +187,10 @@ function dealCards() {
     card3.src = deck[2].imageUrl;
     card4.src = deck[3].imageUrl;
 
+    card1.alt = deck[0].value
+    card3.alt = deck[2].value
+    card4.alt = deck[3].value
+
     dealersHand.push(deck[0]);
     playersHand.push(deck[2]);
     playersHand.push(deck[3]);
