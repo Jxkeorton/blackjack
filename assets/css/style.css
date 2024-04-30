@@ -182,6 +182,23 @@ section {
     margin: 10px;
 }
 
+/* Chip Colors */
+.gold {
+    background-color: #FFD700; /* Gold */
+}
+
+.bronze {
+    background-color: #CD7F32; /* Bronze */
+}
+
+.light-grey {
+    background-color: #D3D3D3; /* Light Grey */
+}
+
+.dark-grey {
+    background-color: #808080; /* Dark Grey */
+}
+
 /* Game Area */
 .game-area {
     position: relative; 
@@ -254,6 +271,23 @@ section {
     max-width: 100%; 
 }
 
+.player-chips,
+.pot {
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    border-radius: 2%;
+    padding: 5px;
+}
+
+.pot h3 {
+    color: black;
+}
+
+.pot p {
+    color: black;
+}
+
 .card {
     width: 100px; 
 }
@@ -311,29 +345,6 @@ section {
     cursor: pointer;
 }
 
-/* Chip Colors */
-.gold {
-    background-color: #FFD700; /* Gold */
-}
-
-.bronze {
-    background-color: #CD7F32; /* Bronze */
-}
-
-.light-grey {
-    background-color: #D3D3D3; /* Light Grey */
-}
-
-.dark-grey {
-    background-color: #808080; /* Dark Grey */
-}
-
-.all-in {
-    background-color: blue;
-    color: aliceblue;
-    font-size: smaller;
-}
-
 /* Hover Effect for Buttons and Chips */
 .game-control:hover, .chip:hover {
     opacity: 0.8;
@@ -350,7 +361,7 @@ section {
 
 /* End Game area */
 .end-game-screen {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(42, 92, 93, 0.5);
     position: fixed; /* Change position to fixed */
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
