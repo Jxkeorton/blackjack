@@ -346,6 +346,7 @@ footer {
     align-items: center;
     background-color: black;
     padding: 1rem 0;
+    z-index: 2;
 }
 
 footer i {
