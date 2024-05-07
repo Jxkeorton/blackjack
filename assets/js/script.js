@@ -310,10 +310,8 @@ async function stand() {
  */
 async function dealersTurn() {
 
-    // Randomize the difficulty level of the dealer
-    const dealersHitMax = Math.floor(Math.random() * 3) + 15; // Generates a random number between 15 and 18
+    const dealersHitMax = Math.floor(Math.random() * 3) + 15;
 
-    // Display the dealer's second card after 3 seconds
     await new Promise(resolve => setTimeout(() => {
         const card2 = document.querySelector(".card2");
         card2.src = deck[1].imageUrl;
@@ -323,17 +321,14 @@ async function dealersTurn() {
     
     let value = getHandValue(dealersHand);
 
-    // Dealer keeps hitting until the hand value is greater than the hit threshold
     while (value < dealersHitMax && value <= 21) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         const dealersHandDiv = document.querySelector(".dealers-hand");
 
-        // Create a new img element for the additional card
         const newDealerCard = document.createElement("img");
         newDealerCard.alt = `${deck[currentCardIndex].value}`;
         newDealerCard.src = deck[currentCardIndex].imageUrl;
 
-        // Adjust z-index to overlap previous cards
         newDealerCard.style.zIndex = currentCardIndex;
         newDealerCard.style.position = "absolute";
         if (dealersHand.length === 2) {
@@ -349,9 +344,7 @@ async function dealersTurn() {
             dealersHandDiv.appendChild(newDealerCard);
     
         } else if (dealersHand.length === 6) {
-            // creates new div and shrinks previous div for players hand then adds new card
             dealersHandDiv.style.height = "75px";
-            // Get all images within the dealers-hand div with the class card
             const dealerCards = dealersHandDiv.querySelectorAll(".card");
             for (let i = 0; i < dealerCards.length; i++){
                 dealerCards[i].style.width = "50px";
@@ -359,12 +352,10 @@ async function dealersTurn() {
     
             newDealerCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
     
-            // create new div 
             const newDiv = document.createElement("div");
             newDiv.className = "dealers-hand2"
             newDiv.appendChild(newDealerCard)
     
-            // Insert players-hand2 as the third from the last child
             const parent = dealersHandDiv.parentNode;
             const thirdFromLastChild = parent.childNodes[3];
             parent.insertBefore(newDiv, thirdFromLastChild.nextSibling);
