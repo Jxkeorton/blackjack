@@ -119,7 +119,7 @@ section {
 
 /* Betting options */
 .betting-options {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -203,6 +203,7 @@ section {
 .game-area {
     position: relative; 
     z-index: 1; 
+    display: none;
 }
 
 .dealers-hand{

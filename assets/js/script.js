@@ -16,6 +16,14 @@ let dealerMultiplier2 = 1;
 
 let winner = "";
 
+let chips = document.querySelectorAll('.chip');
+
+chips.forEach(chip => {
+    chip.addEventListener('click', (event) => handleBet(event));
+});
+
+document.querySelector('.all-in-button').addEventListener('click', (event) => handleBet(event));
+
 // Create the deck of cards
 for (const suit of suits) {
     for (const value of values) {
@@ -27,9 +35,6 @@ for (const suit of suits) {
         deck.push(card);
     }
 }
-document.querySelector(".game-area").style.display = "none"
-document.querySelector(".end-game-screen").style.display = "none"
-document.querySelector(".betting-options").style.display = "none"
 
 // Event listeners
 // Add event listeners for the hit and stand buttons
@@ -115,10 +120,12 @@ function startGame(event) {
     bettingOptions.style.display = "block";
 }
 
-// When the user clicks a chip to bet with it recalculates the ammount
-function handleBet(amount) {
+// When the user clicks a chip to bet with it recalculates the amount
+function handleBet(e) {
+    console.log(e)
 
-    // Accounts for chipcount from previous rounds
+    amount = parseInt(e.target.value);
+    // Accounts for chip count from previous rounds
     updateChipCount(playerChips);
 
     if (playerChips >= amount) {
