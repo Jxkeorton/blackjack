@@ -62,6 +62,14 @@ main {
     background: url("../images/felt.webp") no-repeat center / cover;
 }
 
+.error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../images/felt.webp") no-repeat center / cover;
+}
+
 section {
     padding: 10px;
     margin: 15px;
