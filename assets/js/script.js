@@ -24,7 +24,6 @@ chips.forEach(chip => {
 
 document.querySelector('.all-in-button').addEventListener('click', (event) => handleBet(event));
 
-// Create the deck of cards
 for (const suit of suits) {
     for (const value of values) {
         const card = {
@@ -36,8 +35,6 @@ for (const suit of suits) {
     }
 }
 
-// Event listeners
-// Add event listeners for the hit and stand buttons
 const hitButton = document.querySelector(".hit")
 const standButton = document.querySelector(".stand")
 
@@ -65,17 +62,14 @@ function updatePlayGameLink(linkElement) {
     }
 }
 
-// Add event listener to update the link text dynamically
 document.addEventListener("chipCountUpdated", function() {
     updatePlayGameLink(playGameLink);
 });
 
-// On document load
 document.addEventListener("DOMContentLoaded", function() {
     
 
     const startButton =  document.querySelector(".play-button");
-    // Event listener for the "Let's Play" button
     if(startButton) {
         startButton.addEventListener("click", function() {
             if(currentBet > 0) {
@@ -104,11 +98,9 @@ function startGame(event) {
         event.preventDefault();
     }
 
-    // Reset player chips and currentBet
     playerChips = 3000
     currentBet = 0;
 
-    // update UI
     updateChipCount(playerChips);
     playersBet = document.querySelector(".your-bet")
     playersBet.textContent = "Your bet: 0"
@@ -117,7 +109,6 @@ function startGame(event) {
     document.querySelector(".game-area").style.display = "none";
     document.querySelector(".end-game-screen").style.display = "none";
 
-    // Show the betting options
     const bettingOptions = document.querySelector(".betting-options");
     bettingOptions.style.display = "block";
 }
@@ -130,18 +121,13 @@ function startGame(event) {
 function handleBet(e) {
     amount = parseInt(e.target.value);
 
-    // Accounts for chip count from previous rounds
     updateChipCount(playerChips);
 
     if (playerChips >= amount) {
-        // Add the bet amount to the current bet
         currentBet += amount;
-        // Subtract the bet amount from player's chip count
         playerChips -= amount;
     } else {
-        // If player doesn't have enough chips, set the current bet to their remaining chips
         currentBet += playerChips;
-        // Set player chips to 0
         playerChips = 0;
 
         console.log("All in")
@@ -220,7 +206,6 @@ function dealCards() {
 
 }
 
-// This function ensures that cards are sorted randomly each turn.
 function shuffleCards() {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -235,15 +220,12 @@ function hit() {
     const playersHandDiv = document.querySelector(".players-hand");
     const playerCards = playersHandDiv.querySelectorAll(".card");
 
-    // add card to player's hand
     playersHand.push(deck[currentCardIndex]);
 
-    //// Create a new img element for the new card
     const newCard = document.createElement("img");
     newCard.alt = `${deck[currentCardIndex].value}`;
     newCard.src = deck[currentCardIndex].imageUrl;
 
-    // Adjust z-index to overlap previous cards
     newCard.style.zIndex = currentCardIndex;
     newCard.style.position = "absolute";
 
@@ -260,7 +242,6 @@ function hit() {
         playersHandDiv.appendChild(newCard);
 
     } else if (currentCardIndex === 9) {
-        // creates new div and shrinks previous div for players hand then adds new card
         playersHandDiv.style.height = "75px";
 
         for (let i = 0; i < playerCards.length; i++){
@@ -269,12 +250,10 @@ function hit() {
 
         newCard.className = `new-card flip-in-ver-right card${currentCardIndex + 1}`;
 
-        // create new div 
         const newDiv = document.createElement("div");
         newDiv.className = "players-hand2"
         newDiv.appendChild(newCard)
 
-        // Insert players-hand2 as the third from the last child
         const parent = playersHandDiv.parentNode;
         const thirdFromLastChild = parent.childNodes[7];
         parent.insertBefore(newDiv, thirdFromLastChild.nextSibling);
@@ -308,13 +287,11 @@ function hit() {
  */
 function stand() {
 
-    // Hide buttons from UI
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "none";
     standButton.style.display = "none";
 
-    // Calculate value of hands
     let dealerValue = dealersTurn();
     let playerValue = getHandValue(playersHand)
 
@@ -421,7 +398,6 @@ function dealersTurn() {
  * @returns {string} - The winner of the game ("player", "dealer", or "tie").
  */
 function determineWinner(dealerValue, playerValue) {
-    // Player busts, dealer wins
     if (playerValue > 21) {
         return "dealer";
     } else if (dealerValue > 21) {
@@ -448,7 +424,6 @@ function getHandValue(hand) {
     let numberOfAces = 0;
 
     for (let card of hand) {
-        // Extract the numeric value of the card (assuming all face cards have value of 10)
         const value = parseInt(card.value) > 10 ? 10 : parseInt(card.value);
         totalValue += value;
 
@@ -457,10 +432,9 @@ function getHandValue(hand) {
         }
     }
 
-    // Adjust the total value to account for Aces (Aces can be 1 or 11)
     while (numberOfAces > 0 && totalValue + 10 <= 21) {
-        totalValue += 10; // recalculate the value of the hand
-        numberOfAces--; // ensure we can escape the while loop 
+        totalValue += 10; 
+        numberOfAces--; 
     }
 
     return totalValue;
@@ -477,15 +451,12 @@ function resultsPage(winner) {
     const nextHandButton = endGameScreen.querySelector(".next-hand-button");
     const endGameChips = endGameScreen.querySelector(".end-game-chips");
 
-    // Display the outcome based on the winner
     if (winner === "player") {
         outcomeTitle.textContent = "You win!";
-        // Player wins, double the current bet and add it to player's chips
         playerChips += (currentBet * 2);
 
         endGameChips.textContent = `Your Chips: ${playerChips}`
     } else if (winner === "dealer") {
-        // Player loses, no change to chips
         if(playerChips === 0){
             nextHandButton.textContent = "Reset Game";
             outcomeTitle.textContent = "Game Over"
@@ -496,19 +467,15 @@ function resultsPage(winner) {
         }
     } else {
         outcomeTitle.textContent = "It's a tie!";
-        // Tie, return the current bet to player's chips
         playerChips += currentBet;
         endGameChips.textContent = `Your Chips: ${playerChips}`
     }
 
-    // UI bet amount back to zero
     const betAmountElement = document.querySelector(".your-bet");
     betAmountElement.textContent = 'Your bet: 0';
 
-    // Update chip count on the UI
     updateChipCount(playerChips);
 
-    // Reset variables
     currentCardIndex = 4;
     currentBet = 0;
     multiplier = 1;
@@ -516,12 +483,9 @@ function resultsPage(winner) {
     dealerMultiplier = 1;
     dealerMultiplier2 = 1;
 
-    // Show the end game screen
     endGameScreen.style.display = "block";
 
-    // Add event listener to the next hand button
     nextHandButton.addEventListener("click", function() {
-        // If the player has more than zero chips, start a new hand
         if (playerChips > 0) {
             nextHand()
         } else {
@@ -536,7 +500,6 @@ function resultsPage(winner) {
 function nextHand() {
     const endGameScreen = document.querySelector(".end-game-screen");
 
-    // Bust text hidden
     dealerBust = document.querySelector(".dealer-bust")
     dealerBust.style.display = "none";
     playerBust = document.querySelector(".player-bust")
@@ -545,14 +508,11 @@ function nextHand() {
     endGameScreen.style.display = "none"
     document.querySelector(".game-area").style.display = "none";
 
-    // show buttons
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "inline";
     standButton.style.display = "inline";
 
-    // Replace specific card images with card back image
-    // Fix UI back to original
     const cardBackUrl = "./assets/images/card-back.webp";
     const cardClasses = ["card1", "card2", "card3", "card4"];
 
@@ -566,7 +526,6 @@ function nextHand() {
     card4.style.left = "105px"
     card2.style.left = "105px"
 
-    // Remove other card images
     const allCards = document.querySelectorAll(".card, .new-card");
     allCards.forEach(card => {
         if (!cardClasses.some(className => card.classList.contains(className))) {
@@ -574,7 +533,6 @@ function nextHand() {
         }
     });
 
-    // Reset player and dealer hands
     playersHand.length = 0;
     dealersHand.length = 0;
 
@@ -587,19 +545,16 @@ function nextHand() {
  */
 function resetGame() {
     
-    // Bust text hidden
     dealerBust = document.querySelector(".player-bust")
     dealerBust.style.display = "none";
     playerBust = document.querySelector(".player-bust")
     playerBust.style.display = "none";
 
-    // show buttons
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "inline";
     standButton.style.display = "inline";
 
-    // Replace specific card images with card back image
     const cardBackUrl = "./assets/images/card-back.webp";
     const cardClasses = ["card1", "card2", "card3", "card4"];
 
@@ -608,7 +563,6 @@ function resetGame() {
         cardElement.src = cardBackUrl;
     });
 
-    // Remove other card images
     const allCards = document.querySelectorAll(".card, .new-card");
     allCards.forEach(card => {
         if (!cardClasses.some(className => card.classList.contains(className))) {
@@ -616,10 +570,9 @@ function resetGame() {
         }
     });
 
-    // Reset player and dealer hands
     playersHand.length = 0;
     dealersHand.length = 0;
-    // If the player has zero chips, restart the game
+
     startGame();
 }
 
