@@ -70,6 +70,11 @@ main {
     background: url("../images/felt.webp") no-repeat center / cover;
 }
 
+.error-button {
+    text-decoration: none;
+    display: block;
+}
+
 section {
     padding: 10px;
     margin: 15px;
