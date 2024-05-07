@@ -1,5 +1,7 @@
 # Blackjack Royale
 
+![color pallette](docs/amiresponsive-blackjack.png)
+
 Blackjack Royale is a Javascript game build to allow users to play a game of blackjack online for fun. Built emulate real life gambling without the real life risk.
 
 ## Features
@@ -10,7 +12,7 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
     * This will allow users to easily navigate between the pages within the site on any size device. 
 
 * Footer
-    * This will contain a link to my GitHub page and a font awesome icon to make it more visually appealling. Link will open in a new tab when clicked.
+    * This will contain a link to my GitHub page and a font awesome icon to make it more visually appealing. Link will open in a new tab when clicked.
     * This will allow the user to follow me on my Github page
 
 * Favicon
@@ -48,24 +50,34 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 ### Color pallette
 ![color pallette](docs/color-pallette.jpg)
 
-### Wireframes
+### Wire frames
 - Home Screen
 
-![Home Wireframe](docs/home-screen-wireframe.png)
+![Home Wire frame](docs/home-screen-wireframe.png)
 
 - Game Screen
 
-![Game wireframe](docs/game-screen-wireframe.png)
+![Game wire frame](docs/game-screen-wireframe.png)
 
 - End game screen
 
-![End game wireframe](docs/end-game-wireframe.png)
+![End game wire frame](docs/end-game-wireframe.png)
 
 ## Technologies
 
 ## Testing
 ### Responsiveness
+
 ### Accessibility
+
+### Functional testing
+
+### Validators
+* HTML
+* CSS
+* Javascript
+
+### Lighthouse
 
 ## Deployment
 
