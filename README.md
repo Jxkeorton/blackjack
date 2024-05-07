@@ -82,7 +82,29 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 
 ## Technologies
 
+- HTML
+  - The structure of the Website was developed using HTML as the main language.
+- CSS
+  - The Website was styled using custom CSS in an external file.
+- JavaScript
+  - The game play logic was created using JavaScript in an external file.
+- Visual Studio Code
+  - The website was developed using Visual Studio Code IDE
+- GitHub
+  - Source code is hosted on GitHub and deployed using Git Pages.
+- Git
+  - Used to commit and push code during the development of the Website
+- Font Awesome
+  - Icon obtained from https://fontawesome.com/ was used for GitHub Icon in the footer.
+- Favicon.io
+  - favicon files were created at https://favicon.io/favicon-converter/
+- Balsamiq
+  - wireframes were created using balsamiq from https://balsamiq.com/wireframes/desktop/#
+- Canva
+  - This was used to create the favicon
+
 ## Testing
+
 ### Responsiveness
 
 ### Accessibility
