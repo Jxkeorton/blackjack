@@ -285,14 +285,14 @@ function hit() {
 /**
  * Stand: Finish the player's turn, initiate dealer's turn, and determine the winner.
  */
-function stand() {
+async function stand() {
 
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "none";
     standButton.style.display = "none";
 
-    let dealerValue = dealersTurn();
+    let dealerValue = await dealersTurn();
     let playerValue = getHandValue(playersHand)
 
     console.log("Dealer value:", dealerValue, "Player value:", playerValue, dealersHand, playersHand)
@@ -308,20 +308,24 @@ function stand() {
  * 
  * @returns {number} - The total value of the dealer's hand after completing their turn.
  */
-function dealersTurn() {
+async function dealersTurn() {
 
     // Randomize the difficulty level of the dealer
     const dealersHitMax = Math.floor(Math.random() * 3) + 15; // Generates a random number between 15 and 18
-    
-    // Display the dealer's second card
-    const card2 = document.querySelector(".card2");
-    card2.src = deck[1].imageUrl;
-    dealersHand.push(deck[1]);
 
+    // Display the dealer's second card after 3 seconds
+    await new Promise(resolve => setTimeout(() => {
+        const card2 = document.querySelector(".card2");
+        card2.src = deck[1].imageUrl;
+        dealersHand.push(deck[1]);
+        resolve();
+    }, 1500));
+    
     let value = getHandValue(dealersHand);
 
     // Dealer keeps hitting until the hand value is greater than the hit threshold
     while (value < dealersHitMax && value <= 21) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const dealersHandDiv = document.querySelector(".dealers-hand");
 
         // Create a new img element for the additional card
@@ -345,7 +349,7 @@ function dealersTurn() {
             dealersHandDiv.appendChild(newDealerCard);
     
         } else if (dealersHand.length === 6) {
-            // creates new div and shrinks previous div for playershand then adds new card
+            // creates new div and shrinks previous div for players hand then adds new card
             dealersHandDiv.style.height = "75px";
             // Get all images within the dealers-hand div with the class card
             const dealerCards = dealersHandDiv.querySelectorAll(".card");
@@ -379,6 +383,7 @@ function dealersTurn() {
 
         currentCardIndex++;
         
+        await new Promise(resolve => setTimeout(resolve, 1000));
         value = getHandValue(dealersHand);
     }
 
