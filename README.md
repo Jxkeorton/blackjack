@@ -168,7 +168,7 @@ Testing was focused to ensure the following criteria were met:
 
 ### Version Control
 
-The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘Portfolio-Project-2-Poker-Fun’.
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘Blackjack Royale’.
 
 The following git commands were used throughout development to push code to the remote repo:
 
