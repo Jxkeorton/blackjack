@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     } else {
-        console.error('Start button not found');
+        alert('Start button not found');
     }
 
 });
@@ -132,7 +132,6 @@ function handleBet(e) {
         currentBet += playerChips;
         playerChips = 0;
 
-        console.log("All in");
         alert("You are All-in!");
     }
 
@@ -294,8 +293,6 @@ async function stand() {
 
     let dealerValue = await dealersTurn();
     let playerValue = getHandValue(playersHand);
-
-    console.log("Dealer value:", dealerValue, "Player value:", playerValue, dealersHand, playersHand);
     
     winner = determineWinner(dealerValue, playerValue);
     
