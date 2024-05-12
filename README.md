@@ -187,6 +187,7 @@ No issues were found using the CSS validation.
 ![javascript validator](docs/jshint.png)
 
 - JSHint helped me correct missing semi colons and undefined variables withing my code.
+- The resetBet and navigateHome functions were called within the html, this is why JSHint thinks they are unused.
 
 ### Lighthouse
 - After the first run i noticed i had not got a meta description, after correcting this here are the lighthouse results.
