@@ -9,6 +9,7 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 ### Site wide
 * Navigation menu
     * Contains links to the Home and Game pages and will be responsive on all devices.
+
 ![site navigation](docs/nav.png)
 
     * This will allow users to easily navigate between the pages within the site on any size device. 
@@ -16,21 +17,25 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 * Footer
     * This will contain a link to my GitHub page and a font awesome icon to make it more visually appealing. Link will open in a new tab when clicked.
     * This will allow the user to follow me on my Github page
+
 ![footer](docs/footer.png)
 
 * Favicon
     * A site wide favicon will be implemented with a red poker chip.
     * This will provide an image in the the tabs header to allow the user to easily identify the website if they have multiple tabs open.
-![favicon](images/favicon/favicon-32x32.png)
+
+![favicon](assets/images/favicon/favicon-32x32.png)
 
 * 404 page
     * A 404 page will be implemented and will display if a user navigates to a broken link.
     * The 404 page will allow the user to easily navigate back to the main website if they direct to a broken link / missing page, without the need  of the browsers back button.
+
 ![error page](docs/404-page.png)
 
 ### Home Screen
 - Game Rules
     - instructions for the game so the user is informed on how to play and get the most out of the app.
+
 ![rules](docs/rules.png)
 
 - Lets Play button
@@ -45,14 +50,22 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 
 - players hand
     - To show the user what cards they are holding.
+
 ![game screen](docs/game-screen.png)
 
 - Game controls
     - So the user can interact and have control over the game.
+
 ![game screen controls](docs/game-controls.png)
 
 ### Betting options
+- This area will include the amount of chips the player has and the amount they have betted, the chips on the screen act as buttons the user can select from to place a bet.
+
 ![betting options](docs/betting-options.png)
+
+- Controls
+  - The controls will allow the user to reset the bet or place the bet and start the game.
+
 ![betting options controls](docs/betting-options-controls.png)
 
 ### End game screen
@@ -60,11 +73,18 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
     - This area will provide feedback to the user to describe wether they won or lost the game.
 - Play again button
     - A button giving the user the option to play again.
+
 ![end game screen](docs/end-game-screen.png)
+
+## Future features
+To improve accessibility in the future i'd make the cards screen reader friendly this would mean that the user could find the value of there hand and make informed decisions to play the game.
+To do this i would use the aria-label attribute within the card html elements, not forgetting the ones created within the javascript.
 
 ## Design
 
 ### Color pallette
+This is the color pallette that has inspired the colors for my game.
+
 ![color pallette](docs/color-pallette.jpg)
 
 ### Wire frames
@@ -150,10 +170,15 @@ Testing was focused to ensure the following criteria were met:
 
 ### Validators
 * HTML
+No issues were found with the HTML validation.
+
 ![index html validator](docs/index-html.png)
+
 ![404 html validator](docs/error-html.png)
 
 * CSS
+No issues were found using the CSS validation.
+
 ![css validator](docs/css-validator.png)
 
 * Javascript
@@ -162,7 +187,7 @@ Testing was focused to ensure the following criteria were met:
 - JSHint helped me correct missing semi colons and undefined variables withing my code.
 
 ### Lighthouse
-- After the first run i noticed i had not got a meta description, after correcting this here are the lighthouse results
+- After the first run i noticed i had not got a meta description, after correcting this here are the lighthouse results.
 
 ## Deployment
 
