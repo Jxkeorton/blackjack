@@ -153,7 +153,9 @@ IPhone X
 
 ### Accessibility
 
-[Wave Accessibility](https://wave.webaim.org/) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
+[Wave Accessibility](https://wave.webaim.org/) tool was used for final testing of the deployed website to check for any aid accessibility testing.
+
+- I found contrast errors on the All-in button and certain Headings which were corrected.
 
 Testing was focused to ensure the following criteria were met:
 
