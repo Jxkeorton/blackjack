@@ -1,5 +1,4 @@
-/* jshint esversion: 8 */
-
+// Global variables
 const suits = ['h', 'd', 'c', 's'];
 const values = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '01'];
 
@@ -18,6 +17,7 @@ let dealerMultiplier2 = 1;
 
 let winner = "";
 
+// Add event listener to betting chips
 let chips = document.querySelectorAll('.chip');
 
 chips.forEach(chip => {
@@ -26,6 +26,7 @@ chips.forEach(chip => {
 
 document.querySelector('.all-in-button').addEventListener('click', (event) => handleBet(event));
 
+// Creates the deck of cards
 for (const suit of suits) {
     for (const value of values) {
         const card = {
@@ -37,6 +38,7 @@ for (const suit of suits) {
     }
 }
 
+// Adds event listeners to buttons
 const hitButton = document.querySelector(".hit");
 const standButton = document.querySelector(".stand");
 
@@ -71,6 +73,7 @@ document.addEventListener("chipCountUpdated", function() {
 document.addEventListener("DOMContentLoaded", function() {
     
 
+    // When the start button is pressed the startGame function is called
     const startButton =  document.querySelector(".play-button");
     if(startButton) {
         startButton.addEventListener("click", function() {
@@ -125,6 +128,7 @@ function handleBet(e) {
 
     updateChipCount(playerChips);
 
+    // Stops the user betting more than they have
     if (playerChips >= amount) {
         currentBet += amount;
         playerChips -= amount;
@@ -191,6 +195,7 @@ function dealCards() {
     const card3 = document.querySelector(".card3");
     const card4 = document.querySelector(".card4");
 
+    // Sets the relevant cards to the player and dealer within the UI
     card1.src = deck[0].imageUrl;
     card3.src = deck[2].imageUrl;
     card4.src = deck[3].imageUrl;
@@ -205,6 +210,9 @@ function dealCards() {
 
 }
 
+/**
+ * Shuffles the deck to ensure a random dealing of cards
+ */
 function shuffleCards() {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -221,6 +229,7 @@ function hit() {
 
     playersHand.push(deck[currentCardIndex]);
 
+    // creates a new img element to display the new card within the UI.
     const newCard = document.createElement("img");
     newCard.alt = `${deck[currentCardIndex].value}`;
     newCard.src = deck[currentCardIndex].imageUrl;
@@ -228,6 +237,7 @@ function hit() {
     newCard.style.zIndex = currentCardIndex;
     newCard.style.position = "absolute";
 
+    // Adds relevant styles according to the number of cards in the players hand.
     if (currentCardIndex === 4) {
         let card4 = document.querySelector(".card4");
         card4.style.left = "20px";
@@ -240,7 +250,9 @@ function hit() {
 
         playersHandDiv.appendChild(newCard);
 
-    } else if (currentCardIndex === 9) {
+    } 
+    // If the player has more than 6 cards the cards start a new row.
+    else if (currentCardIndex === 9) {
         playersHandDiv.style.height = "75px";
 
         for (let i = 0; i < playerCards.length; i++){
@@ -272,6 +284,7 @@ function hit() {
 
     const value = getHandValue(playersHand);
 
+    // Calculates if the player has bust.
     if (value > 21) {
         
         let playerBust = document.querySelector(".player-bust");
@@ -291,6 +304,7 @@ async function stand() {
     hitButton.style.display = "none";
     standButton.style.display = "none";
 
+    // Awaits the dealersTurn to avoid running the functions below until it has finished.
     let dealerValue = await dealersTurn();
     let playerValue = getHandValue(playersHand);
     
@@ -309,6 +323,7 @@ async function dealersTurn() {
 
     const dealersHitMax = Math.floor(Math.random() * 3) + 15;
 
+    // Waits 1.5 seconds to turn the dealers second card
     await new Promise(resolve => setTimeout(() => {
         const card2 = document.querySelector(".card2");
         card2.src = deck[1].imageUrl;
@@ -318,6 +333,7 @@ async function dealersTurn() {
     
     let value = getHandValue(dealersHand);
 
+    // The while loop states that the dealer will hit if still below the dealersHitMax variable or 21
     while (value < dealersHitMax && value <= 21) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         const dealersHandDiv = document.querySelector(".dealers-hand");
@@ -328,6 +344,8 @@ async function dealersTurn() {
 
         newDealerCard.style.zIndex = currentCardIndex;
         newDealerCard.style.position = "absolute";
+
+        // Creates a second row if the dealer has more than 6 cards
         if (dealersHand.length === 2) {
             let card2 = document.querySelector(".card2");
             card2.style.left = "20px";
@@ -444,6 +462,7 @@ function resultsPage(winner) {
     const nextHandButton = endGameScreen.querySelector(".next-hand-button");
     const endGameChips = endGameScreen.querySelector(".end-game-chips");
 
+    // Displays different text depending on the outcome.
     if (winner === "player") {
         outcomeTitle.textContent = "You win!";
         playerChips += (currentBet * 2);
@@ -469,6 +488,7 @@ function resultsPage(winner) {
 
     updateChipCount(playerChips);
 
+    // resets global variables.
     currentCardIndex = 4;
     currentBet = 0;
     multiplier = 1;
@@ -491,6 +511,7 @@ function resultsPage(winner) {
  * Start a new hand after completing the current one.
  */
 function nextHand() {
+    // Resets game area UI
     const endGameScreen = document.querySelector(".end-game-screen");
 
     let dealerBust = document.querySelector(".dealer-bust");
@@ -501,24 +522,23 @@ function nextHand() {
     endGameScreen.style.display = "none";
     document.querySelector(".game-area").style.display = "none";
 
+    // Places game controls back.
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "inline";
     standButton.style.display = "inline";
 
+    // Resets cards
     const cardBackUrl = "./assets/images/card-back.webp";
     const cardClasses = ["card1", "card2", "card3", "card4"];
-
     cardClasses.forEach(className => {
         const cardElement = document.querySelector(`.${className}`);
         cardElement.src = cardBackUrl;
     });
-
     let card4 = document.querySelector(".card4");
     let card2 = document.querySelector(".card2");
     card4.style.left = "105px";
     card2.style.left = "105px";
-
     const allCards = document.querySelectorAll(".card, .new-card");
     allCards.forEach(card => {
         if (!cardClasses.some(className => card.classList.contains(className))) {
@@ -537,25 +557,25 @@ function nextHand() {
  * Reset the game to its initial state.
  */
 function resetGame() {
-    
+    // removes bust text if it exists.
     let dealerBust = document.querySelector(".player-bust");
     dealerBust.style.display = "none";
     let playerBust = document.querySelector(".player-bust");
     playerBust.style.display = "none";
 
+    // Places the hit and stand buttons back.
     const hitButton = document.querySelector(".hit");
     const standButton = document.querySelector(".stand");
     hitButton.style.display = "inline";
     standButton.style.display = "inline";
 
+    // Resets cards
     const cardBackUrl = "./assets/images/card-back.webp";
     const cardClasses = ["card1", "card2", "card3", "card4"];
-
     cardClasses.forEach(className => {
         const cardElement = document.querySelector(`.${className}`);
         cardElement.src = cardBackUrl;
     });
-
     const allCards = document.querySelectorAll(".card, .new-card");
     allCards.forEach(card => {
         if (!cardClasses.some(className => card.classList.contains(className))) {
