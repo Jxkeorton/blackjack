@@ -265,3 +265,9 @@ To design the favicon
 
 * [Open Game Art](https://opengameart.org/)
 For the images of the cards
+
+* [Kenny Yip coding - Code Blackjack with JavaScript HTML CSS](https://www.youtube.com/watch?v=bMYCWccL-3U&t=166s)
+This video provided inspiration such as how to create a deck of cards with relevant images.
+
+* [ChatGPT](https://chatgpt.com/)
+ChatGPT was used to suggest possible functions to begin the project
