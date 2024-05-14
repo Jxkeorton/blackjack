@@ -212,7 +212,9 @@ No issues were found using the CSS validation.
 
 ### Lighthouse
 - After the first run i noticed i had not got a meta description, after correcting this here are the lighthouse results.
-- Also the SEO is scored 89 due to 'non crawlable links'.
+- Also the nav links were 'non crawlable links' so i added a fallback href.
+
+![lighthouse](docs/lighthouse.png)
 
 ## Deployment
 
