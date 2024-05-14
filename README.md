@@ -9,10 +9,9 @@ Blackjack Royale is a Javascript game build to allow users to play a game of bla
 ### Site wide
 * Navigation menu
     * Contains links to the Home and Game pages and will be responsive on all devices.
+    * This will allow users to easily navigate between the pages within the site on any size device. 
 
 ![site navigation](docs/nav.png)
-
-    * This will allow users to easily navigate between the pages within the site on any size device. 
 
 * Footer
     * This will contain a link to my GitHub page and a font awesome icon to make it more visually appealing. Link will open in a new tab when clicked.
@@ -205,6 +204,7 @@ No issues were found using the CSS validation.
 ![css validator](docs/css-validator.png)
 
 * Javascript
+
 ![javascript validator](docs/jshint.png)
 
 - JSHint helped me correct missing semi colons and undefined variables withing my code.
