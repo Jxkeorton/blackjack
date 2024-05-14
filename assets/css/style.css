@@ -47,6 +47,10 @@ header > ul {
     cursor: pointer;
 }
 
+.nav-links > a {
+    text-decoration: none;
+}
+
 .nav-links > a:hover {
     color: red;
 }

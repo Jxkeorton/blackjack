@@ -212,6 +212,7 @@ No issues were found using the CSS validation.
 
 ### Lighthouse
 - After the first run i noticed i had not got a meta description, after correcting this here are the lighthouse results.
+- Also the SEO is scored 89 due to 'non crawlable links'.
 
 ## Deployment
 
