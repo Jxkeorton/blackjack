@@ -576,6 +576,10 @@ function resetGame() {
         const cardElement = document.querySelector(`.${className}`);
         cardElement.src = cardBackUrl;
     });
+    let card4 = document.querySelector(".card4");
+    let card2 = document.querySelector(".card2");
+    card4.style.left = "105px";
+    card2.style.left = "105px";
     const allCards = document.querySelectorAll(".card, .new-card");
     allCards.forEach(card => {
         if (!cardClasses.some(className => card.classList.contains(className))) {
